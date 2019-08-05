@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { observer } from "mobx-react";
 import Data from "./stores/Data";
 import Table from "./components/table";
-import Input from "./components/input";
+import Controls from "./components/Controls";
 import "./styles.css";
 
 interface AppProps {}
@@ -22,10 +22,14 @@ class App extends Component<AppProps, AppState> {
     this.store.get(query);
   };
 
+  private resetItems = () => {
+    this.store.clearItems();
+  };
+
   render() {
     return (
       <div className="app">
-        <Input onChange={this.search} />
+        <Controls onChange={this.search} clearItems={this.resetItems} />
         <Table items={this.store.repositories} />
       </div>
     );

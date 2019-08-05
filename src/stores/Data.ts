@@ -40,6 +40,11 @@ class Data {
 
     this._items = data.items.map(Data.parseItem);
   }
+
+  @action.bound
+  public clearItems () {
+    this._items = [];
+  }
 }
 
 
