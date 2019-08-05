@@ -1,0 +1,32 @@
+.table-container {
+  overflow: auto;
+}
+
+.table {
+  border: 1px solid #3e3e3e;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: #3e3e3e;
+  color: #fff;
+}
+
+.table td {
+  font-size: 12px;
+}
+
+.table td,
+.table th {
+  border: 1px solid #3e3e3e;
+  padding: 8px;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #ccc;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
