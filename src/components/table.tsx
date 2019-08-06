@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Item } from "../stores/Data";
+import EditableField from "./EditableField";
 import "./table.css";
 
 interface Props {
@@ -13,21 +14,28 @@ class Table extends React.Component<Props, State> {
   // }
 
   private renderItem = (item: Item, index: number) => {
+    const keys = Object.keys(item);
+
     return (
       <tr key={item.id}>
         <td>{index + 1}</td>
-        <td>{item.name}</td>
-        <td>{item.description}</td>
-        <td>{item.githubURL}</td>
-        <td>{item.updated}</td>
-        <td>{item.homepage}</td>
-        <td>{item.forks}</td>
-        <td>{item.stars}</td>
-        <td>{item.license}</td>
+        {keys.map(
+          (key: string) => {
+            return <EditableField value={item[key]} />;
+          }
+          //
+        )}
       </tr>
     );
   };
-
+  // <td>{item.name}</td>
+  // <td>{item.description}</td>
+  // <td>{item.githubURL}</td>
+  // <td>{item.updated}</td>
+  // <EditableFiled value={item.homepage} />
+  // <td>{item.forks}</td>
+  // <td>{item.stars}</td>
+  // <td>{item.license}</td>
   public render() {
     const { items } = this.props;
 

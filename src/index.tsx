@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { observer } from "mobx-react";
 import Data from "./stores/Data";
-import Table from "./components/table";
+import Table from "./components/Table";
 import Controls from "./components/Controls";
+import Button from "./components/Button";
 import "./styles.css";
 
 interface AppProps {}
@@ -30,6 +31,7 @@ class App extends Component<AppProps, AppState> {
     return (
       <div className="app">
         <Controls onChange={this.search} clearItems={this.resetItems} />
+        <Button items={this.store.repositories} />
         <Table items={this.store.repositories} />
       </div>
     );

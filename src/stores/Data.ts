@@ -1,5 +1,5 @@
-import { action, observable, computed, toJS } from 'mobx';
-import { searchRepositories } from '../middlewares/api';
+import { action, observable, computed, toJS } from "mobx";
+import { searchRepositories } from "../middlewares/api";
 
 export interface Item {
   id: number;
@@ -11,6 +11,7 @@ export interface Item {
   stars: number;
   forks: number;
   updated: string;
+
 }
 
 class Data {
@@ -27,10 +28,10 @@ class Data {
       description: item.description,
       githubURL: item.html_url,
       homepage: item.homepage,
-      license: item.license ? item.license.name : '',
+      license: item.license ? item.license.name : "",
       stars: item.stargazers_count,
       forks: item.forks_count,
-      updated: item.updated_at,
+      updated: item.updated_at
     };
   }
 
@@ -42,10 +43,9 @@ class Data {
   }
 
   @action.bound
-  public clearItems () {
+  public clearItems() {
     this._items = [];
   }
 }
-
 
 export default Data;
