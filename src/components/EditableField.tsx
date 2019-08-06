@@ -1,11 +1,12 @@
 import * as React from "react";
 
 interface Props {
-  value: any;
+  value: number | string;
+  test: string;
 }
 interface State {
   editMode: boolean;
-  value: string;
+  value: string | number;
 }
 interface SyntheticEvent {
   code: string;
@@ -15,6 +16,9 @@ export default class EditableField extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { editMode: false, value: "" };
+  }
+  componentDidMount() {
+    this.setState({ value: this.props.value });
   }
 
   componentDidUpdate(prevProps: Props) {
