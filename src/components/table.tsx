@@ -49,7 +49,7 @@ class Table extends React.Component<Props, State> {
     const keys = Object.keys(item);
     const { deletedItems } = this.state;
     const isCheked = deletedItems.find(el => el === item.id);
-
+    console.log(keys);
     return (
       <tr key={item.id}>
         <td>
@@ -79,31 +79,31 @@ class Table extends React.Component<Props, State> {
         />
         <EditableField
           value={item.updated}
-          objKey={keys[4]}
+          objKey={keys[8]}
           id={item.id}
           handleChange={this.props.handleChange}
         />
         <EditableField
           value={item.homepage}
-          objKey={keys[5]}
+          objKey={keys[4]}
           id={item.id}
           handleChange={this.props.handleChange}
         />
         <EditableField
           value={item.forks}
-          objKey={keys[6]}
-          id={item.id}
-          handleChange={this.props.handleChange}
-        />
-        <EditableField
-          value={item.stars}
           objKey={keys[7]}
           id={item.id}
           handleChange={this.props.handleChange}
         />
         <EditableField
+          value={item.stars}
+          objKey={keys[6]}
+          id={item.id}
+          handleChange={this.props.handleChange}
+        />
+        <EditableField
           value={item.license}
-          objKey={keys[8]}
+          objKey={keys[5]}
           id={item.id}
           handleChange={this.props.handleChange}
         />
