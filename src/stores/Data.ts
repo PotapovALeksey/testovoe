@@ -11,7 +11,12 @@ export interface Item {
   stars: number;
   forks: number;
   updated: string;
+}
 
+export interface IFuncProps {
+  id: number;
+  key: string;
+  value: string;
 }
 
 class Data {
@@ -45,6 +50,20 @@ class Data {
   @action.bound
   public clearItems() {
     this._items = [];
+  }
+  @action.bound
+  public changeFieldData(id: number, key: string, value: string) {
+    const newData: any = this._items.map((el: Item) =>
+      el.id === id ? { ...el, ...{ [key]: value } } : el
+    );
+    this._items = newData;
+  }
+  @action.bound
+  public deletedItemData(deletedItem: number[]) {
+    const newData: any = this._items.filter(
+      (el: Item) => !deletedItem.includes(el.id)
+    );
+    this._items = newData;
   }
 }
 

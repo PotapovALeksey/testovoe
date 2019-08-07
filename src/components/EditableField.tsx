@@ -2,11 +2,13 @@ import * as React from "react";
 
 interface Props {
   value: number | string;
-  test: string;
+  handleChange(id: number, key: string, value: string): void;
+  objKey: string;
+  id: any;
 }
 interface State {
   editMode: boolean;
-  value: string | number;
+  value: any;
 }
 interface SyntheticEvent {
   code: string;
@@ -41,18 +43,26 @@ export default class EditableField extends React.Component<Props, State> {
   onChangeValue = (e: React.FormEvent<HTMLInputElement>) => {
     this.setState({ value: e.currentTarget.value });
   };
+  changeStoreValue = () => {
+    const { id, objKey } = this.props;
+    const {value} = this.state;
 
+    this.props.handleChange(id, objKey, value);
+  };
   handleKeyPress = (event: SyntheticEvent): void => {
     if (event.code !== "Escape") return;
-
     this.setState({ editMode: false });
+    this.changeStoreValue();
   };
   handleClickOtherArea = (e: any): void => {
     const current = e.target;
     const node = this.inputRef.current;
     console.log("node", node);
     console.log("current", current);
-    if (node && node !== current) this.setState({ editMode: false });
+    if (node && node !== current) {
+      this.setState({ editMode: false });
+      this.changeStoreValue();
+    }
   };
 
   private inputRef = React.createRef<HTMLInputElement>();

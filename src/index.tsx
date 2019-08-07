@@ -27,12 +27,23 @@ class App extends Component<AppProps, AppState> {
     this.store.clearItems();
   };
 
+  private changeFieldData = (id: number, key: string, value: string) => {
+    this.store.changeFieldData(id, key, value);
+  };
+
+  private deletedItem = (deletedItem: number[]) => {
+    this.store.deletedItemData(deletedItem);
+  };
   render() {
     return (
       <div className="app">
         <Controls onChange={this.search} clearItems={this.resetItems} />
         <Button items={this.store.repositories} />
-        <Table items={this.store.repositories} />
+        <Table
+          items={this.store.repositories}
+          handleChange={this.changeFieldData}
+          handleDelete={this.deletedItem}
+        />
       </div>
     );
   }
