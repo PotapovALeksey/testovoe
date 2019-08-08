@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { observer } from "mobx-react";
 import Data from "./stores/Data";
-import Table from "./components/Table";
-import Controls from "./components/Controls";
-import Button from "./components/Button";
+import Table from "./components/Table/Table";
+import Controls from "./components/Controls/Controls";
+import Button from "./components/ButtonDownload/ButtonDownload";
 import "./styles.css";
 
 interface AppProps {}
@@ -34,6 +34,10 @@ class App extends Component<AppProps, AppState> {
   private deletedItem = (deletedItem: number[]) => {
     this.store.deletedItemData(deletedItem);
   };
+
+  private sortedFiledsData = (key: string) => {
+    this.store.sortedData(key);
+  };
   render() {
     return (
       <div className="app">
@@ -41,8 +45,9 @@ class App extends Component<AppProps, AppState> {
         <Button items={this.store.repositories} />
         <Table
           items={this.store.repositories}
-          handleChange={this.changeFieldData}
-          handleDelete={this.deletedItem}
+          onChangeFields={this.changeFieldData}
+          onClickDelete={this.deletedItem}
+          onClickSorted={this.sortedFiledsData}
         />
       </div>
     );

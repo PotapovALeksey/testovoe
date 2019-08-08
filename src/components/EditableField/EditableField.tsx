@@ -2,9 +2,7 @@ import * as React from "react";
 
 interface Props {
   value: number | string;
-  handleChange(id: number, key: string, value: string): void;
-  objKey: string;
-  id: any;
+  handleChange(value: string): void;
 }
 interface State {
   editMode: boolean;
@@ -29,10 +27,10 @@ export default class EditableField extends React.Component<Props, State> {
 
     if (this.state.editMode) {
       window.addEventListener("keydown", this.handleKeyPress);
-      window.addEventListener("click", this.handleClickOtherArea);
+      window.addEventListener("mousedown", this.handleClickOtherArea);
     } else {
       window.removeEventListener("keydown", this.handleKeyPress);
-      window.removeEventListener("click", this.handleClickOtherArea);
+      window.removeEventListener("mousedown", this.handleClickOtherArea);
     }
   }
 
@@ -44,10 +42,9 @@ export default class EditableField extends React.Component<Props, State> {
     this.setState({ value: e.currentTarget.value });
   };
   changeStoreValue = () => {
-    const { id, objKey } = this.props;
     const {value} = this.state;
 
-    this.props.handleChange(id, objKey, value);
+    this.props.handleChange(value);
   };
   handleKeyPress = (event: SyntheticEvent): void => {
     if (event.code !== "Escape") return;
@@ -57,8 +54,7 @@ export default class EditableField extends React.Component<Props, State> {
   handleClickOtherArea = (e: any): void => {
     const current = e.target;
     const node = this.inputRef.current;
-    console.log("node", node);
-    console.log("current", current);
+
     if (node && node !== current) {
       this.setState({ editMode: false });
       this.changeStoreValue();

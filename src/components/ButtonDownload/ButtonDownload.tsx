@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Item } from "../stores/Data";
+import { Item } from "../../stores/Data";
 
 interface Props {
   items: Item[];
