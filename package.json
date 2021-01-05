@@ -9,7 +9,7 @@
     "@types/node": "12.6.9",
     "@types/react": "16.8.24",
     "@types/react-dom": "16.8.5",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "react": "^16.8.6",
